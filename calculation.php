@@ -63,7 +63,7 @@ if(isset($_POST["sub"])){
         </tr>
         <?php
         if(isset($_POST["sub"])) {
-            echo `<tr><td> colspan="5" align="center">`;
+            echo '<tr><td colspan="5" align="center">';
             if(empty($error)) {
                 $sum = 0;
                 switch($operator) {
@@ -90,7 +90,7 @@ if(isset($_POST["sub"])){
             } else {
                 echo $error;
             }
-            echo `</td></tr>`;
+            echo '</td></tr>';
         }
     ?>
     </form>
