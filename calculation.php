@@ -21,7 +21,17 @@ $num2 = $_POST["num2"] ?? "";
 $operator = $_POST["operator"] ?? "";
 if(isset($_POST["sub"])){
     if($num1 === ""){
-        
+        $error .= "The first number can not be empty.<br>";
+    } elseif (!is_numeric($num1)) {
+        $error .= "The first number is not a number.<br>";
+    }
+    if($num2 === ""){
+        $error .= "The second number can not be empty.<br>";
+    } elseif (!is_numeric($num2)) {
+        $error .= "The second number is not a number.<br>";
+    }
+    if (($operator == "/" || $operator == "%") && $num2 == 0) {
+        $error .= "The second number can not be 0.<br>";
     }
 }
 ?>
@@ -32,20 +42,20 @@ if(isset($_POST["sub"])){
     <form action="" method="post">
         <tr>
             <td>
-                <input type="text" size="5" name="num1" /*value="<?php echo $num1?>*/">
+                <input type="text" size="5" name="num1" value="<?= $num1?>">
             </td>
             <td>
                 <select name="operator">
-                    <option value="+">+</option>
-                    <option value="-">-</option>
-                    <option value="*">*</option>
-                    <option value="/">/</option>
-                    <option value="%">%</option>
-                    <option value="**">**</option>
+                    <option value="+" <?php if($operator == "+") echo "selected"?>>+</option>
+                    <option value="-" <?php if($operator == "-") echo "selected"?>>-</option>
+                    <option value="*" <?php if($operator == "*") echo "selected"?>>*</option>
+                    <option value="/" <?php if($operator == "/") echo "selected"?>>/</option>
+                    <option value="%" <?php if($operator == "%") echo "selected"?>>%</option>
+                    <option value="**" <?php if($operator == "**") echo "selected"?>>**</option>
                 </select>
             </td>
             <td>
-                <input type="text" size="5" name="num2" /*value="<?php echo $num2?>"*/>
+                <input type="text" size="5" name="num2" value="<?= $num2?>">
             </td>
             <td>
                 <input type="submit" name="sub" value="CALCULATION">
